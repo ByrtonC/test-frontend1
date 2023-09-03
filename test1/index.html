@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Frontend 1</title>
+</head>
+<body style="margin: 0;">
+    <div class="container" style="width: 100%; padding: 0% 4%;">
+        <div>Everyone's Photo</div>
+        <div class="photo-container" id="photos" style="width: 100%; display: flex; flex-flow: wrap;">
+        </div>
+    </div>
+    <script>
+        const photos = document.getElementById('photos')
+        async function GetData() {
+            const result = await fetch('https://picsum.photos/v2/list')
+            const data = await result.json()
+            console.log(data);
+            photos.innerHTML = data.map((e) => {
+                return `<div><img src="${e.url}" height="150px" /></div>`
+            })
+        }
+        GetData()
+    </script>
+</body>
+</html>
